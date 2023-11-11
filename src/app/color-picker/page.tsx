@@ -13,15 +13,15 @@ import {
   PopoverBody,
   Center,
   SimpleGrid,
-  extendTheme,
   Input,
   Heading,
-  VStack
+  VStack,
+  chakra
 } from "@chakra-ui/react";
 
 const Page = () => {
   const [color, setColor] = useState<string>("gray.500");
-
+  console.log("State change", color);
   const colors: string[] = [
     "gray.500",
     "red.500",
@@ -34,7 +34,7 @@ const Page = () => {
     "purple.500",
     "pink.500"
   ];
-
+  chakra.button
   return (
     <VStack>
       <Center marginTop={50}>
@@ -43,7 +43,7 @@ const Page = () => {
       <Center marginTop={5}>
         <Popover variant="picker">
           <PopoverTrigger>
-            <Button
+            <chakra.button
               aria-label={color}
               background={color}
               height="22px"
@@ -51,7 +51,7 @@ const Page = () => {
               padding={0}
               minWidth="unset"
               borderRadius={3}
-            ></Button>
+            ></chakra.button>
           </PopoverTrigger>
           <PopoverContent width="170px">
             <PopoverArrow bg={color} />
@@ -68,7 +68,7 @@ const Page = () => {
             <PopoverBody height="120px">
               <SimpleGrid columns={5} spacing={2}>
                 {colors.map((c) => (
-                  <Button
+                  <chakra.button
                     key={c}
                     aria-label={c}
                     background={c}
@@ -76,14 +76,13 @@ const Page = () => {
                     width="22px"
                     padding={0}
                     minWidth="unset"
-                    variant='outline'
                     // border={"1px solid"}
                     borderRadius={3}
                     _hover={{ background: c }}
                     onClick={() => {
                       setColor(c);
                     }}
-                  ></Button>
+                  ></chakra.button>
                 ))}
               </SimpleGrid>
               <Input
@@ -101,6 +100,7 @@ const Page = () => {
         </Popover>
       </Center>
     </VStack>
+      
   );
 }
 
